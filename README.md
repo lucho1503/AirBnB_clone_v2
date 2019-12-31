@@ -1,6 +1,6 @@
 # HBNB (AirBnB clone v2 - MySQL)
 ![Holberton logo](https://www.holbertonschool.com/holberton-logo.png)
-> This is the console /command interpreter for the Holberton Airbnb clone project. The console can be used to store objects in and retrieve objects from a JSON.
+> This is the console /command interpreter for the Holberton Airbnb clone project. The console can be used to store objects in and retrieve objects from a JSON and MySQL.
 
 ## Supported classes:
 * BaseModel
