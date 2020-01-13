@@ -1,8 +1,7 @@
 #!/usr/bin/python3
-""" this script that geneartes a .tgz archive from all the web_static """
+#this script that geneartes a .tgz archive from all the web_static
 
 
-""" packages """
 import os
 from fabric.api import local
 from datetime import datetime
