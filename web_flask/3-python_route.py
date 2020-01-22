@@ -26,7 +26,7 @@ def c_is_fun(text):
 @app.route('/python/', strict_slashes=False)
 @app.route('/python/<py>', strict_slashes=False)
 def python_is_cool(py="is_cool"):
-    return "python " + py.replace("_", " ")
+    return "Python " + py.replace("_", " ")
 
 
 if __name__ == "__main__":
