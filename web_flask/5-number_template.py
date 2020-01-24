@@ -43,5 +43,5 @@ def num_int(n):
 
 
 if __name__ == "__main__":
-   # app.run(host='http://c9838269f5a3.19.hbtn-cod.io', port=5000)
-    app.run()
+    app.run(host='0.0.0.0', port=5000)
+    #app.run()
