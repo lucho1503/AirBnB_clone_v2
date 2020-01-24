@@ -36,11 +36,12 @@ def number_int(n):
         return str(n) + " is a number"
 
 
-@app.route('/number_template/<int:num>', strict_slashes=False)
-def num_int(num):
-    if isinstance(num, int):
-        return render_template('5-number.html')
+@app.route('/number_template/<int:n>', strict_slashes=False)
+def num_int(n):
+    #if isinstance(num, int):
+    return render_template('5-number.html', num=n)
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+   # app.run(host='http://c9838269f5a3.19.hbtn-cod.io', port=5000)
+    app.run()
