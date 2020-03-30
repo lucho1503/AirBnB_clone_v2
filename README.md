@@ -57,4 +57,4 @@ Ex:
 * **Miranda Evans**
 * **Kevin Yook** - [yook00627](https://github.com/yook00627)
 * **Luis Miguel Moreno Cano** - [lucho1503](https://github.com/lucho1503)
-* **Diego Monroy** - [diegozencode](https://github.com/diegozencode)
+* **Daniel Alejandro Cumaco Robayo** - [Wetgou](https://github.com/Wetgou)
