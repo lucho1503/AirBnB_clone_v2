@@ -27,12 +27,12 @@ class FileStorage:
         """
         if cls is None:
             objs = {}
-            for key, value in self.__objects.items():
+            for key, value in FileStorage.__objects.items():
                 if type(value).__name__ == cls:
                     objs[key] = value
             return objs
         else:
-            return self.__objects
+            return FileStorage.__objects
 
     def new(self, obj):
         """sets __object to given obj
@@ -68,5 +68,5 @@ class FileStorage:
         obj_del = "{}.{}".format(type(obj).__name__, obj.id)
         all_objs = self.all(obj.__class__.__name__)
         if all_objs.get(obj_del):
-            del self.__objects[obj_del]
+            del FileStorage.__objects[obj_del]
         self.save()
