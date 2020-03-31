@@ -65,8 +65,17 @@ class FileStorage:
 
     def delete(self, obj=None):
         """ delete a object """
-        obj_del = "{}.{}".format(type(obj).__name__, obj.id)
-        all_objs = self.all(obj.__class__.__name__)
-        if all_objs.get(obj_del):
-            del FileStorage.__objects[obj_del]
-        self.save()
+        if obj:
+            obj_del = "{}.{}".format(type(obj).__name__, obj.id)
+            all_objs = self.all(obj.__class__.__name__)
+            if all_objs.get(obj_del):
+                del FileStorage.__objects[obj_del]
+            self.save()
+
+    def get(self, cls, id):
+        """ returns a object for class name and id """
+        if cls and id:
+            obj_id = "{}.{}".format(cls, id)
+            all_obj = self.all(cls)
+            return all_obj.get(obj_id)
+        return None
