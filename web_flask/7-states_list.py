@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# start a application web flask
+""" start a application web flask """
 
 
 from models import storage
@@ -15,7 +15,7 @@ def tear_down(exception):
     storage.close()
 
 
-@app.route('/states_list/', strict_slashes=False)
+@app.route('/states_list', strict_slashes=False)
 def states_list():
     """ list states for id : name and display in html file"""
     states = storage.all(State)
