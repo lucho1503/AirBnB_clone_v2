@@ -2,11 +2,12 @@
 """This is the state class"""
 import os
 import models
-from sqlalchemy.ext.declarative import declarative_base
+from models.city import City
 from models.base_model import BaseModel, Base
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, Float
 from sqlalchemy.orm import relationship
-from models.city import City
+import shlex
 
 STORAGE_TYPE = os.environ.get('HBNB_TYPE_STORAGE')
 
@@ -18,7 +19,6 @@ class State(BaseModel, Base):
     __tablename__ = 'states'
     name = Column(String(128), nullable=False)
     cities = relationship('City', backref='state', cascade='delete')
-
 
     @property
     def cities(self):
