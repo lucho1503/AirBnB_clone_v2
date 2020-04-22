@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """This is the file storage class for AirBnB"""
 import json
-from models.base_model import BaseModel
+from models import base_model
 from models.user import User
 from models.state import State
 from models.city import City
@@ -25,7 +25,7 @@ class FileStorage:
         Return:
             a list of objects of one type of class.
         """
-        if cls is None:
+        if cls is not None:
             objs = {}
             for key, value in FileStorage.__objects.items():
                 if type(value).__name__ == cls:
@@ -79,3 +79,7 @@ class FileStorage:
             all_obj = self.all(cls)
             return all_obj.get(obj_id)
         return None
+
+    def close(selff):
+        """ deserializing the JSON file """
+        self.reload()

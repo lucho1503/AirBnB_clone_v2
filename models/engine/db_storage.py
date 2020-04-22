@@ -4,19 +4,24 @@ import os
 from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import sessionmaker, scoped_session
 from models.base_model import Base
-from models import base_model, amenity, city, place, review, state, user
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
 
 
 class DBStorage:
     """ class DBStorage for engine """
-    CLASSES = {
-        'Amenity': amenity.Amenity,
-        'City': city.City,
-        'Place': place.Place,
-        'Review': review.Review,
-        'state': state.State,
-        'User': user.User
-    }
+    """CLASSES = {
+        'Amenity': amenity,
+        'City': city,
+        'Place': place,
+        'Review': review,
+        'State': state,
+        'User': user
+    }"""
 
     """ prepares a engine database """
     __engine = None
@@ -37,17 +42,19 @@ class DBStorage:
         """ retrieves a dictionary of all objects """
         new_dict = {}
         if cls is not None:
-            sess_query = self.__session.query(DBStorage.CLASSES[cls])
-            for ins in sess_query:
+            if type(cls) is str:
+                cls = eval(cls)
+            r_query = self.__session.query(cls)
+            for ins in r_query:
                 ins_name = "{}.{}".format(type(ins).__name__, ins.id)
                 new_dict[ins_name] = ins
-            return new_dict
-
-        for c in DBStorage.CLASSES.values():
-            sess_query = self.__session.query(c)
-            for ins in sess_query:
-                ins_name = "{}.{}".format(type(ins).__name__, ins.id)
-                new_dict[ins_name] = ins
+        else:
+            new_list = [State, City, User, Place, Review, Amenity]
+            for c in new_list:
+                r_query = self.__session.query(c)
+                for ins in r_query:
+                    ins_name = "{}.{}".format(type(ins).__name__, ins.id)
+                    new_dict[ins_name] = ins
         return new_dict
 
     def new(self, obj):
@@ -76,4 +83,4 @@ class DBStorage:
                          expire_on_commit=False))
 
     def close(self):
-        self.__session.close()
+        self.__session.remove()
