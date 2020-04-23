@@ -23,5 +23,5 @@ def states_list():
     return render_template('7-states_list.html', Table="States", my_dict=dictt)
 
 
-#if __name__ == "__main__":
-app.run(host='0.0.0.0', port=5000)
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5000)
