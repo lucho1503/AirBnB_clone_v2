@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-""" creates a database and start a server web application flask """
+""" Create database + start server """
+from flask import Flask, render_template
 from models import storage
 from models.state import State
-from flask import render_template, Flask
+
 
 app = Flask(__name__)
 
