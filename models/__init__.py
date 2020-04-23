@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ create a instance for apllication """
-import os
+import models
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -10,6 +10,7 @@ from models.place import Place
 from models.review import Review
 from models.engine.db_storage import DBStorage
 from models.engine.file_storage import FileStorage
+import os
 
 STORAGE_TYPE = os.environ.get('HBNB_TYPE_STORAGE')
 
