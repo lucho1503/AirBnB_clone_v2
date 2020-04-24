@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """This is the file storage class for AirBnB"""
 import json
-from models import base_model
+from models.base_model import BaseModel
 from models.user import User
 from models.state import State
 from models.city import City
@@ -67,18 +67,7 @@ class FileStorage:
         """ delete a object """
         if obj:
             obj_del = "{}.{}".format(type(obj).__name__, obj.id)
-            all_objs = self.all(obj.__class__.__name__)
-            if all_objs.get(obj_del):
-                del FileStorage.__objects[obj_del]
-            self.save()
-
-    def get(self, cls, id):
-        """ returns a object for class name and id """
-        if cls and id:
-            obj_id = "{}.{}".format(cls, id)
-            all_obj = self.all(cls)
-            return all_obj.get(obj_id)
-        return None
+            del self.__objects[obj_del]
 
     def close(selff):
         """ deserializing the JSON file """
