@@ -17,12 +17,10 @@ def states_list():
     return render_template('7-states_list.html', Table="States", my_dict=dictt)
 
 
-
 @app.teardown_appcontext
 def tear_down(exception):
     """ teardown """
     storage.close()
-
 
 
 if __name__ == "__main__":
