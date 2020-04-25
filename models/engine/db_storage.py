@@ -4,10 +4,10 @@ import os
 from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import sessionmaker, scoped_session
 from models.base_model import Base
-from models.amenity import Amenity
+#from models.amenity import Amenity
 from models.city import City
-from models.place import Place
-from models.review import Review
+#from models.place import Place
+#from models.review import Review
 from models.state import State
 from models.user import User
 
@@ -49,7 +49,7 @@ class DBStorage:
                 ins_name = "{}.{}".format(type(ins).__name__, ins.id)
                 new_dict[ins_name] = ins
         else:
-            new_list = [State, City, User, Place, Review, Amenity]
+            new_list = [State, City, User]
             for c in new_list:
                 r_query = self.__session.query(c)
                 for ins in r_query:
@@ -65,22 +65,18 @@ class DBStorage:
         """ commit all changes of the current database session """
         self.__session.commit()
 
-    def rollback_session(self):
-        """ commits all changes of the current database session """
-        self.__session.rollback()
-
     def delete(self, obj=None):
         """ delete from the current database session obj if not None """
         if obj:
-            self.__session.delete(obj)
-            self.save()
+            self.session.delete(obj)
 
     def reload(self):
         """ creates all tables in database """
         Base.metadata.create_all(self.__engine)
-        self.__session = scoped_session(
-            sessionmaker(bind=self.__engine,
-                         expire_on_commit=False))
+        sess = sessionmaker(bind=self.__engine, expire_on_commit=False)
+        session = scoped_session(sess)
+        self.__session = session()
 
     def close(self):
+        """ session close """
         self.__session.close()
