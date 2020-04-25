@@ -9,10 +9,12 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
+
 @app.teardown_appcontext
 def close_sesion(exception):
     """ close the session """
     storage.close()
+
 
 @app.route('/cities_by_states', strict_slashes=False)
 def cities_of_states():
